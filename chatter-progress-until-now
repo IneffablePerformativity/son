@@ -1,0 +1,78 @@
+Cherry-pick the killer fix from son elm into son oak:
+
+https://git-scm.com/docs/git-cherry-pick
+
+-x
+
+    When recording the commit, append a line that says "(cherry picked from commit …​)" to the original commit message in order to indicate which commit this change was cherry-picked from.
+	
+EXAMPLES
+
+git cherry-pick master
+
+    Apply the change introduced by the commit
+	at the tip of the master branch and
+	create a new commit with this change.
+
+So, in son:
+
+git checkout oak
+
+git cherry-pick -x elm
+===>>>
+[oak 5540710] Added the killer-fix-son into son elm on 2196...
+ Date: Sun Feb 12 10:48:59 2023 -0600
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 killer-fix-son
+ 
+git status
+==>
+On branch oak
+Your branch is ahead of 'origin/oak' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+I don't think I need this long form, as oak is not a new branch:
+git push --set-upstream origin oak
+
+So,
+git push
+
+Good Guessing! ==>
+Enumerating objects: 3, done.
+Counting objects: 100% (3/3), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (2/2), 322 bytes | 322.00 KiB/s, done.
+Total 2 (delta 1), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To github.com:IneffablePerformativity/son.git
+   3dba509..5540710  oak -> oak
+
+====
+
+
+	THIS IS THE DESIRED SON CHERRY PICK RESULT:
+	
+
+git log
+commit 5540710ce040a2a50dd0b09ef5560bb7461f1c58 (HEAD -> oak, origin/oak)
+Author: IneffablePerformativity <IneffablePerformativity@gmail.com>
+Date:   Sun Feb 12 10:48:59 2023 -0600
+
+    Added the killer-fix-son into son elm on 2196...
+
+    (cherry picked from commit 9092e11deb4348d9eebdddab4045e897fbff6680)
+
+commit 3dba509ac303405cc89921dff4f86c6c3283726c
+Author: IneffablePerformativity <IneffablePerformativity@gmail.com>
+Date:   Sun Feb 12 10:36:04 2023 -0600
+
+    added file to-have-a-commit to oak branch of son.
+
+
+   
+============= I should be able to commit this chatter... ===============
+
+
